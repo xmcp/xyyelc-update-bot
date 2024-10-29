@@ -1,0 +1,9 @@
+services:
+  electri-bot:
+    build: .
+    volumes:
+      - /home/pi/hass/config:/mnt
+    restart: unless-stopped
+    environment:
+      - IAAA_USERNAME
+      - IAAA_PASSWORD
