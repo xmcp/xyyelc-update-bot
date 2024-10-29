@@ -73,8 +73,9 @@ def main():
         wait_until_next_tick()
         try:
             remain = update()
-            delta = remain - last
-            last = remain
+            if remain != last:
+                delta = remain - last
+                last = remain
         except Exception as e:
             print('error during update:', type(e))
             traceback.print_exc()
