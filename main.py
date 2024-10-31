@@ -5,6 +5,7 @@ import traceback
 import json
 import base64
 
+PHASE_S = 3600*2
 INTERVAL_S = 3600*6
 STORE_FILE = '/mnt/electri-remain.json'
 
@@ -55,7 +56,7 @@ def update():
     return remain
 
 def wait_until_next_tick():
-    t = time.time()
+    t = time.time() - PHASE_S
     slp = INTERVAL_S - t % INTERVAL_S
     print('next update in:', int(slp))
     time.sleep(slp)
