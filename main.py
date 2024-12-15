@@ -16,7 +16,7 @@ def update():
             'appid': 'XYYelc_2024',
             'userName': os.environ['IAAA_USERNAME'],
             'password': base64.b64decode(os.environ['IAAA_PASSWORD'].encode()).decode(),
-            'redirUrl': 'http://www.xyyelc.pku.edu.cn/auth/token_validate',
+            'redirUrl': 'https://xyyelc.pku.edu.cn/auth/token_validate',
         },
     )
     iaaa_res.raise_for_status()
@@ -26,7 +26,7 @@ def update():
 
     s = requests.Session()
     login_res = s.get(
-        'http://www.xyyelc.pku.edu.cn/auth/token_validate',
+        'https://xyyelc.pku.edu.cn/auth/token_validate',
         params={
             'token': iaaa_token,
         },
@@ -37,7 +37,7 @@ def update():
     assert '/index' in login_target, f'login target is: {login_target}'
 
     remain_res = s.get(
-        'http://www.xyyelc.pku.edu.cn/electricity/remain',
+        'https://xyyelc.pku.edu.cn/electricity/remain',
     )
     remain_res.raise_for_status()
     remain_txt = remain_res.text
